@@ -1,10 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
+  dat.gui: ^0.7.9
   parcel: ^2.8.3
   three: ^0.152.2
 
 dependencies:
+  dat.gui: 0.7.9
   three: 0.152.2
 
 devDependencies:
@@ -1036,6 +1038,10 @@ packages:
     dependencies:
       css-tree: 1.1.3
     dev: true
+
+  /dat.gui/0.7.9:
+    resolution: {integrity: sha512-sCNc1OHobc+Erc1HqiswYgHdVNpSJUlk/Hz8vzOCsER7rl+oF/4+v8GXFUyCgtXpoCX6+bnmg07DedLvBLwYKQ==}
+    dev: false
 
   /detect-libc/1.0.3:
     resolution: {integrity: sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg==}
