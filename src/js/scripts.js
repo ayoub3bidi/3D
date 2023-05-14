@@ -24,10 +24,17 @@ scene.add(axesHelper);
 camera.position.set(0, 2, 5);
 orbit.update();
 
+//? Box
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 const box = new THREE.Mesh(boxGeometry, boxMaterial);
 scene.add(box);
+
+//? Plane
+const planeGeometry = new THREE.PlaneGeometry(30, 30);
+const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF });
+const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+scene.add(plane);
 
 function animate(time) {
     box.rotation.x = time/1000;
