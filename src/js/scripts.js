@@ -37,8 +37,19 @@ const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 scene.add(plane);
 plane.rotation.x = - Math.PI / 2;
 
+//? Grid helper
 const gridHelper = new THREE.GridHelper(30, 30);
 scene.add(gridHelper);
+
+//? Sphere
+const sphereGeometry = new THREE.SphereGeometry(4, 50, 50);
+const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: false });
+// const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x0000ff, wireframe: false });
+// const sphereMaterial = new THREE.MeshLambertMaterial({ color: 0x0000ff, wireframe: false });
+const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+scene.add(sphere);
+
+sphere.position.set(-10, 10, 0);
 
 function animate(time) {
     box.rotation.x = time/1000;
