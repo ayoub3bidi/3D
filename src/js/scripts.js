@@ -33,7 +33,8 @@ scene.add(box);
 
 //? Plane
 const planeGeometry = new THREE.PlaneGeometry(30, 30);
-const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, side: THREE.DoubleSide });
+// const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, side: THREE.DoubleSide });
+const planeMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF, side: THREE.DoubleSide });
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 scene.add(plane);
 plane.rotation.x = - Math.PI / 2;
@@ -44,13 +45,17 @@ scene.add(gridHelper);
 
 //? Sphere
 const sphereGeometry = new THREE.SphereGeometry(4, 50, 50);
-const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: false });
-// const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x0000ff, wireframe: false });
+// const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: false });
+const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x0000ff, wireframe: false });
 // const sphereMaterial = new THREE.MeshLambertMaterial({ color: 0x0000ff, wireframe: false });
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 scene.add(sphere);
 
 sphere.position.set(-10, 10, 0);
+
+//? Ambient light
+const ambientLight = new THREE.AmbientLight(0x333333);
+scene.add(ambientLight);
 
 // ? dat gui data entry
 const gui = new dat.GUI();
