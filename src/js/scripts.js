@@ -62,17 +62,29 @@ const ambientLight = new THREE.AmbientLight(0x333333);
 scene.add(ambientLight);
 
 //? Directional light
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-scene.add(directionalLight);
-directionalLight.position.set(-30, 50, 0);
-directionalLight.castShadow = true;
-directionalLight.shadow.camera.bottom = -12;
+// const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+// scene.add(directionalLight);
+// directionalLight.position.set(-30, 50, 0);
+// directionalLight.castShadow = true;
+// directionalLight.shadow.camera.bottom = -12;
 
-const dLightHelper = new THREE.DirectionalLightHelper(directionalLight, 5);
-scene.add(dLightHelper);
+// const dLightHelper = new THREE.DirectionalLightHelper(directionalLight, 5);
+// scene.add(dLightHelper);
 
-const dLightCameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera);
-scene.add(dLightCameraHelper);
+// const dLightCameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera);
+// scene.add(dLightCameraHelper);
+
+//? Spot light
+const spotLight = new THREE.SpotLight(0xffffff, 0.8);
+scene.add(spotLight);
+
+spotLight.position.set(-100, 100, 0);
+spotLight.castShadow = true;
+spotLight.angle = 0.2;
+spotLight.shadow.camera.bottom = -12;
+
+const sLightHelper = new THREE.SpotLightHelper(spotLight);
+scene.add(sLightHelper);
 
 // ? dat gui data entry
 const gui = new dat.GUI();
@@ -80,7 +92,10 @@ const gui = new dat.GUI();
 const options = {
     sphereColor: 0x0000ff,
     wireframe: false,
-    speed: 0.01
+    speed: 0.01, 
+    angle: 0.2, 
+    penumbra: 0,
+    intensity: 1
 };
 
 gui.addColor(options, 'sphereColor').onChange((e) => {
@@ -95,6 +110,18 @@ gui.add(options, 'speed').min(0.01).max(0.1).step(0.01).onChange((e) => {
     speed = e;
 });
 
+gui.add(options, 'angle').min(0).max(1).step(0.01).onChange((e) => {
+    spotLight.angle = e;
+});
+
+gui.add(options, 'penumbra').min(0).max(1).step(0.01).onChange((e) => {
+    spotLight.penumbra = e;
+});
+
+gui.add(options, 'intensity').min(0).max(1).step(0.01).onChange((e) => {
+    spotLight.intensity = e;
+});
+
 let step = 0;
 
 function animate(time) {
@@ -103,6 +130,11 @@ function animate(time) {
 
     step += options.speed;
     sphere.position.y = 10 * Math.abs(Math.sin(step));
+
+    spotLight.angle = options.angle;
+    spotLight.penumbra = options.penumbra;
+    spotLight.intensity = options.intensity;
+    sLightHelper.update();
 
     renderer.render(scene, camera);
 }
