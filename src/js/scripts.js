@@ -97,12 +97,19 @@ scene.fog = new THREE.FogExp2(0xFFFFFF, 0.01);
   //?change color
 // renderer.setClearColor(0xFF78FF);
   //?change image
-// const textureLoader = new THREE.TextureLoader();
+const textureLoader = new THREE.TextureLoader();
 // scene.background = textureLoader.load(stars);
 const cubeTextureLoader = new THREE.CubeTextureLoader();
 scene.background = cubeTextureLoader.load([
     nebula, nebula, nebula, stars, nebula, nebula
 ]);
+const box2Geometry = new THREE.BoxGeometry(4, 4, 4);
+const box2Material = new THREE.MeshBasicMaterial({ 
+    map: textureLoader.load(stars)
+});
+const box2 = new THREE.Mesh(box2Geometry, box2Material);
+scene.add(box2);
+box2.position.set(0, 15, 10);
 
 // ? dat gui data entry
 const gui = new dat.GUI();
