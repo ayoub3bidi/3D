@@ -86,8 +86,12 @@ spotLight.shadow.camera.bottom = -12;
 const sLightHelper = new THREE.SpotLightHelper(spotLight);
 scene.add(sLightHelper);
 
+//? fog
 // scene.fog = new THREE.Fog(0xFFFFFF, 0, 200);
 scene.fog = new THREE.FogExp2(0xFFFFFF, 0.01);
+
+//? change background color
+renderer.setClearColor(0xFF78FF);
 
 // ? dat gui data entry
 const gui = new dat.GUI();
